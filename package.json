@@ -10,7 +10,8 @@
     "payload": "payload",
     "generate:types": "payload generate:types",
     "generate:graphQLSchema": "payload generate:graphQLSchema",
-    "init-payload": "tsx scripts/init-payload.ts"
+    "init-payload": "tsx scripts/init-payload.ts",
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "@types/express": "^5.0.3",
