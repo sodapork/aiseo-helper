@@ -9,10 +9,5 @@
     "app/api/payload/route.ts": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "PAYLOAD_SECRET": "@payload_secret",
-    "MONGODB_URI": "@mongodb_uri",
-    "PAYLOAD_PUBLIC_SERVER_URL": "@payload_public_server_url"
   }
 } 
