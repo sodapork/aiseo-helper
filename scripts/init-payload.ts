@@ -10,25 +10,6 @@ async function initPayload() {
     console.log('Payload initialized successfully!')
     console.log(`Admin URL: ${payload.getAdminURL()}`)
 
-    // Create first admin user if none exists
-    const users = await payload.find({
-      collection: 'users',
-      limit: 1,
-    })
-
-    if (users.docs.length === 0) {
-      const adminUser = await payload.create({
-        collection: 'users',
-        data: {
-          email: 'admin@aiseohelper.com',
-          password: 'admin123',
-          name: 'Admin User',
-          role: 'admin',
-        },
-      })
-      console.log('Created admin user:', adminUser.email)
-    }
-
     // Create sample tools
     const tools = await payload.find({
       collection: 'tools',

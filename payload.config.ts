@@ -5,7 +5,6 @@ import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
-import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
 import { Media } from './collections/Media'
 import { Tools } from './collections/Tools'
@@ -18,11 +17,8 @@ if (!payloadSecret) {
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
-  admin: {
-    user: Users.slug,
-  },
   editor: lexicalEditor({}),
-  collections: [Users, Pages, Media, Tools],
+  collections: [Pages, Media, Tools],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

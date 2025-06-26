@@ -12,8 +12,7 @@
     "generate:graphQLSchema": "payload generate:graphQLSchema",
     "init-payload": "tsx scripts/init-payload.ts",
     "setup": "./scripts/setup.sh",
-    "deploy": "./scripts/deploy.sh",
-    "export-users": "tsx scripts/export-users.ts"
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.43.0",
@@ -30,6 +29,7 @@
     "mongoose": "^7.6.0",
     "motion": "^12.19.1",
     "next": "^15.3.4",
+    "nodemailer": "^7.0.3",
     "payload": "^3.43.0",
     "postcss": "^8",
     "react": "^19.1.0",
@@ -38,6 +38,7 @@
     "typescript": "^5"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
     "eslint": "^8",
     "eslint-config-next": "15.3.4",
     "tsx": "^4.20.3"

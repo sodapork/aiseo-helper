@@ -66,7 +66,6 @@ npm run init-payload
 ```
 This will:
 - Set up the database collections
-- Create an admin user (email: admin@aiseohelper.com, password: admin123)
 - Add sample tools to the database
 
 6. Run the development server:
@@ -82,12 +81,9 @@ yarn dev
 
 ### Payload Admin Panel
 - **URL**: `http://localhost:3000/admin`
-- **Default Login**: 
-  - Email: `admin@aiseohelper.com`
-  - Password: `admin123`
+- **Note**: You'll need to create an admin user through the Payload admin interface
 
 ### Available Collections
-- **Users**: Manage admin users and roles
 - **Tools**: Add, edit, and manage SEO tools
 - **Pages**: Create and manage static pages
 - **Media**: Upload and manage images and files
@@ -125,13 +121,14 @@ const newTool = await fetch('/api/tools', {
 ```
 aiseo-helper/
 ├── app/                    # Next.js App Router
-│   ├── admin/             # Payload admin routes
 │   ├── api/               # API routes
 │   ├── globals.css        # Global styles
 │   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Homepage
+│   ├── page.tsx           # Homepage
+│   └── tools/             # Tool pages
+│       ├── content-optimizer/
+│       └── keyword-analyzer/
 ├── collections/           # Payload CMS collections
-│   ├── Users.ts           # User management
 │   ├── Tools.ts           # SEO tools
 │   ├── Pages.ts           # Static pages
 │   └── Media.ts           # Media uploads
@@ -200,62 +197,49 @@ mongodump --db aiseo-helper --out ./backup
 mongorestore --db aiseo-helper ./backup/aiseo-helper
 ```
 
+## Available Tools
+
+### Content Optimizer
+Optimize your content structure and clarity for better AI understanding. Get actionable suggestions to improve how AI systems discover, process, and recommend your content.
+
+**Features:**
+- Content structure analysis
+- AI readability scoring
+- Semantic optimization suggestions
+- Context enhancement recommendations
+
+### Keyword Analyzer
+Analyze how AI systems understand and process your keywords. Get insights into semantic relevance, context strength, and LLM understanding to optimize for AI-powered discovery.
+
+**Features:**
+- AI relevance scoring
+- Semantic analysis
+- Context strength evaluation
+- LLM understanding metrics
+
 ## Deployment
 
 ### Vercel (Recommended)
-1. Set up environment variables in Vercel dashboard
-2. Connect your MongoDB database
-3. Deploy automatically from GitHub
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Set up environment variables in Vercel dashboard
+4. Deploy
 
 ### Other Platforms
-1. Set environment variables
-2. Build the project: `npm run build`
-3. Start the production server: `npm start`
-
-## Troubleshooting
-
-### Common Issues
-
-**"MongoDB connection failed"**
-- Ensure MongoDB is running
-- Check your `MONGODB_URI` environment variable
-- Verify network connectivity
-
-**"Payload not initialized"**
-- Run `npm run init-payload` first
-- Check that all environment variables are set
-
-**"Admin panel not accessible"**
-- Verify the admin user was created
-- Check browser console for errors
-- Ensure CORS settings are correct
-
-### Development Commands
-```bash
-# Generate TypeScript types
-npm run generate:types
-
-# Generate GraphQL schema
-npm run generate:graphQLSchema
-
-# Initialize Payload (creates admin user and sample data)
-npm run init-payload
-
-# Run Payload CLI
-npm run payload
-```
+The app can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Submit a pull request
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License.
-
-## Support
-
-For support, email support@aiseohelper.com or create an issue in the repository. 
+This project is licensed under the MIT License. 
