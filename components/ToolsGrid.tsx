@@ -91,6 +91,20 @@ export default function ToolsGrid() {
     }
   }
 
+  // Helper function to get status tag styling
+  const getStatusStyling = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'in beta':
+        return 'bg-yellow-100 text-yellow-800 border border-yellow-200'
+      case 'in development':
+        return 'bg-red-100 text-red-800 border border-red-200'
+      case 'complete':
+        return 'bg-green-100 text-green-800 border border-green-200'
+      default:
+        return 'bg-gray-100 text-gray-800 border border-gray-200'
+    }
+  }
+
   return (
     <section id="tools" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,11 +138,11 @@ export default function ToolsGrid() {
                 <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <tool.icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                <div className="flex items-start justify-between mb-2 gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors flex-1 min-w-0">
                     {tool.name}
                   </h3>
-                  <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                  <span className={`text-xs px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${getStatusStyling(tool.status)}`}>
                     {tool.status}
                   </span>
                 </div>
