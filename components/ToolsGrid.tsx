@@ -12,7 +12,7 @@ const tools = [
     description: 'Analyze how AI systems understand and process your keywords for better LLM discovery',
     icon: Search,
     color: 'from-blue-500 to-blue-600',
-    status: 'active',
+    status: 'in beta',
     category: 'Analysis',
     link: '/tools/keyword-analyzer'
   },
@@ -22,7 +22,7 @@ const tools = [
     description: 'Optimize your content structure for better AI understanding and recommendations',
     icon: FileText,
     color: 'from-green-500 to-green-600',
-    status: 'active',
+    status: 'in beta',
     category: 'Content',
     link: '/tools/content-optimizer'
   },
@@ -32,7 +32,7 @@ const tools = [
     description: 'Analyze semantic relationships and context for AI-powered search optimization',
     icon: BarChart3,
     color: 'from-purple-500 to-purple-600',
-    status: 'active',
+    status: 'in development',
     category: 'Analysis'
   },
   {
@@ -41,7 +41,7 @@ const tools = [
     description: 'Track how AI assistants and chatbots discover and reference your content',
     icon: Target,
     color: 'from-red-500 to-red-600',
-    status: 'active',
+    status: 'in development',
     category: 'Monitoring'
   },
   {
@@ -50,7 +50,7 @@ const tools = [
     description: 'Build rich context that helps AI systems better understand your content',
     icon: Globe,
     color: 'from-yellow-500 to-yellow-600',
-    status: 'active',
+    status: 'in development',
     category: 'Content'
   },
   {
@@ -59,7 +59,7 @@ const tools = [
     description: 'Identify trending topics and queries that AI systems are focusing on',
     icon: TrendingUp,
     color: 'from-indigo-500 to-indigo-600',
-    status: 'active',
+    status: 'in development',
     category: 'Research'
   },
   {
@@ -68,7 +68,7 @@ const tools = [
     description: 'Optimize your content to be recommended by AI chatbots and assistants',
     icon: MessageSquare,
     color: 'from-pink-500 to-pink-600',
-    status: 'active',
+    status: 'in development',
     category: 'Optimization'
   },
   {
@@ -77,7 +77,7 @@ const tools = [
     description: 'Technical optimization specifically for AI-powered search engines',
     icon: Cpu,
     color: 'from-gray-500 to-gray-600',
-    status: 'active',
+    status: 'in development',
     category: 'Technical'
   }
 ]
