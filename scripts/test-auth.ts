@@ -1,10 +1,11 @@
 import { getPayload } from 'payload'
+import payloadConfig from '../payload.config'
 
 async function testAuth() {
   try {
     console.log('🚀 Testing Authentication System...\n')
     
-    const payload = await getPayload()
+    const payload = await getPayload({ config: payloadConfig })
     
     // Test 1: Check if we can connect to the database
     console.log('✅ Database connection successful')
@@ -41,13 +42,13 @@ async function testAuth() {
     // Test 4: Verify user authentication
     console.log('\n🔍 Verifying authentication...')
     
-    const { user: verifiedUser } = await payload.auth({ 
-      headers: { 
-        authorization: `JWT ${token}` 
-      } 
-    })
-    
-    console.log('✅ Authentication verification successful:', verifiedUser.email)
+    const headers = new Headers({ authorization: `JWT ${token}` })
+    const { user: verifiedUser } = await payload.auth({ headers })
+    if (verifiedUser) {
+      console.log('✅ Authentication verification successful:', verifiedUser.email)
+    } else {
+      console.log('❌ Authentication verification failed: user is null')
+    }
     
     // Test 5: Clean up - delete test user
     console.log('\n🧹 Cleaning up test user...')
