@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on any error
+set -e
+
 echo "🚀 Starting deployment process..."
 
 # Check if we're in the right directory
@@ -21,8 +24,12 @@ if ! git remote get-url origin > /dev/null 2>&1; then
     exit 1
 fi
 
-# Build the project
-echo "📦 Building project..."
+# Clean install dependencies with legacy peer deps
+echo "📦 Installing dependencies..."
+npm ci --legacy-peer-deps
+
+# Build the application
+echo "🔨 Building application..."
 npm run build
 
 if [ $? -ne 0 ]; then
@@ -51,4 +58,4 @@ else
     exit 1
 fi
 
-echo "🎉 Deployment process completed!" 
+echo "✅ Deployment build completed successfully!" 

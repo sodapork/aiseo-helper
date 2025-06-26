@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Settings, ArrowLeft, Plus, Edit, Trash2, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
 

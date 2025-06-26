@@ -1,18 +1,11 @@
-'use client'
-
-import { motion } from 'motion/react'
-import { ArrowRight, Zap, TrendingUp, Target } from 'lucide-react'
-
+'use client';
+import { motion } from 'motion/react';
+import { ArrowRight, Zap, TrendingUp, Target } from 'lucide-react';
 export default function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 lg:py-32">
+    return (<section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Optimize for
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
@@ -24,37 +17,27 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <button className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-300 flex items-center space-x-2 group">
               <span>Explore Tools</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform"/>
             </button>
             <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-colors">
               Watch Demo
             </button>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="flex items-center justify-center space-x-3 text-gray-600">
-              <Zap className="w-6 h-6 text-blue-600" />
+              <Zap className="w-6 h-6 text-blue-600"/>
               <span className="font-medium">AI Assistant Visibility</span>
             </div>
             <div className="flex items-center justify-center space-x-3 text-gray-600">
-              <TrendingUp className="w-6 h-6 text-green-600" />
+              <TrendingUp className="w-6 h-6 text-green-600"/>
               <span className="font-medium">LLM Discovery</span>
             </div>
             <div className="flex items-center justify-center space-x-3 text-gray-600">
-              <Target className="w-6 h-6 text-purple-600" />
+              <Target className="w-6 h-6 text-purple-600"/>
               <span className="font-medium">Semantic Optimization</span>
             </div>
           </motion.div>
@@ -67,6 +50,5 @@ export default function Hero() {
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute top-40 left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
-    </section>
-  )
-} 
+    </section>);
+}

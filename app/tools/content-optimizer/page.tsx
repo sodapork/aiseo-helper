@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { FileText, ArrowLeft, Download, Share2, Zap, Target, MessageSquare, BarChart3, CheckCircle, AlertCircle, Lightbulb } from 'lucide-react'
 import Link from 'next/link'
 

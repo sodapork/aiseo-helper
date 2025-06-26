@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Search, FileText, BarChart3, Target, Globe, TrendingUp, Zap, Settings, MessageSquare, Cpu } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 

@@ -5,12 +5,17 @@ import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
-import { Users } from './collections/Users'
-import { Pages } from './collections/Pages'
-import { Media } from './collections/Media'
-import { Tools } from './collections/Tools'
+import { Users } from './collections/Users.js'
+import { Pages } from './collections/Pages.js'
+import { Media } from './collections/Media.js'
+import { Tools } from './collections/Tools.js'
 
 // For now, we'll use a simple configuration that doesn't require database setup
+const payloadSecret = process.env.PAYLOAD_SECRET;
+if (!payloadSecret) {
+  throw new Error('PAYLOAD_SECRET environment variable is required but not set.');
+}
+
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
   admin: {
@@ -29,5 +34,5 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || 'mongodb://localhost:27017/aiseo-helper',
   }),
-  secret: process.env.PAYLOAD_SECRET || 'your-secret-key-change-this-in-production',
+  secret: payloadSecret,
 }) 
