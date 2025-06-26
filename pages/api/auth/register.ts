@@ -4,6 +4,7 @@ import payloadConfig from '../../../payload.config';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
+    // Only allow POST requests
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
@@ -30,15 +31,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Automatically log in the user after registration
     const { token } = await payload.login({
       collection: 'users',
-      data: {
-        email,
-        password,
-      },
+      data: { email, password },
     });
 
     // Set the JWT token as an HTTP-only cookie
     if (token) {
-      res.setHeader('Set-Cookie', `payload-token=${token}; HttpOnly; Path=/; Max-Age=${60 * 60 * 24 * 7}; SameSite=Lax;${process.env.NODE_ENV === 'production' ? ' Secure;' : ''}`);
+      res.setHeader(
+        'Set-Cookie',
+        `payload-token=${token}; HttpOnly; Path=/; Max-Age=${60 * 60 * 24 * 7}; SameSite=Lax;${process.env.NODE_ENV === 'production' ? ' Secure;' : ''}`
+      );
     }
 
     return res.status(200).json({
@@ -52,10 +53,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   } catch (error: any) {
     console.error('Registration error:', error);
+
     // Handle duplicate email error
     if (error.errors?.email?.name === 'ValidationError') {
       return res.status(409).json({ error: 'Email already exists' });
     }
-    return res.status(500).json({ error: 'Registration failed' });
+
+    // Always return a JSON error
+    return res.status(500).json({ error: error.message || 'Registration failed' });
   }
 } 
