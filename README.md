@@ -46,9 +46,14 @@ PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
 # Database Configuration
 MONGODB_URI=mongodb://localhost:27017/aiseo-helper
 
+# OpenAI API Configuration (Required for AI tools)
+OPENAI_API_KEY=your-openai-api-key-here
+
 # For production, use a proper MongoDB connection string like:
 # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/aiseo-helper?retryWrites=true&w=majority
 ```
+
+**Note**: You'll need an OpenAI API key for the AI-powered tools (Content Optimizer and Keyword Analyzer) to work. Get one from [OpenAI Platform](https://platform.openai.com/).
 
 4. Set up MongoDB:
    - **Local MongoDB**: Install MongoDB locally and start the service

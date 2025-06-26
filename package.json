@@ -12,7 +12,8 @@
     "generate:graphQLSchema": "payload generate:graphQLSchema",
     "init-payload": "tsx scripts/init-payload.ts",
     "setup": "./scripts/setup.sh",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "export-users": "tsx scripts/export-users.ts"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.43.0",

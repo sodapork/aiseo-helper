@@ -84,12 +84,14 @@ After your first deployment, you need to set up environment variables:
 PAYLOAD_SECRET=your-super-secret-production-key-here
 MONGODB_URI=your-mongodb-atlas-connection-string
 PAYLOAD_PUBLIC_SERVER_URL=https://aiseohelper.com
+OPENAI_API_KEY=your-openai-api-key-here
 ```
 
 **Important Notes**:
 - **PAYLOAD_SECRET**: Generate a strong random string (32+ characters)
 - **MONGODB_URI**: Use MongoDB Atlas connection string for production
 - **PAYLOAD_PUBLIC_SERVER_URL**: Your production domain
+- **OPENAI_API_KEY**: Your OpenAI API key for AI-powered tools (Content Optimizer and Keyword Analyzer)
 
 ### Step 5: Set Up MongoDB Atlas (Production Database)
 

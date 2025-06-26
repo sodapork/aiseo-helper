@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   const { content } = await req.json();
 
+  // Debug: Check if API key is available
+  console.log('OpenAI API Key available:', !!process.env.OPENAI_API_KEY);
+  console.log('API Key length:', process.env.OPENAI_API_KEY?.length || 0);
+
   const prompt = `
     Analyze and optimize the following content for AI and LLM understanding:
     """
@@ -45,12 +49,24 @@ export async function POST(req: NextRequest) {
       })
     });
 
+    console.log('OpenAI API Response Status:', response.status);
+    
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('OpenAI API Error:', errorData);
+      throw new Error(`OpenAI API error: ${response.status} - ${errorData}`);
+    }
+
     const data = await response.json();
+    console.log('OpenAI API Response received');
+    
     const contentResp = data.choices?.[0]?.message?.content;
     let result;
     try {
       result = JSON.parse(contentResp);
-    } catch {
+    } catch (parseError) {
+      console.error('JSON Parse Error:', parseError);
+      console.log('Raw content response:', contentResp);
       result = {};
     }
     result = {
@@ -65,6 +81,7 @@ export async function POST(req: NextRequest) {
     };
     return NextResponse.json(result);
   } catch (error) {
+    console.error('Content Optimizer Error:', error);
     return NextResponse.json({
       aiReadability: 0,
       contextClarity: 0,
@@ -72,7 +89,7 @@ export async function POST(req: NextRequest) {
       llmCompatibility: 0,
       suggestions: [],
       optimizedContent: '',
-      aiContext: 'Error contacting OpenAI API.',
+      aiContext: `Error contacting OpenAI API: ${error instanceof Error ? error.message : 'Unknown error'}`,
       content,
     });
   }

@@ -5,10 +5,10 @@ import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
-import { Users } from './collections/Users.js'
-import { Pages } from './collections/Pages.js'
-import { Media } from './collections/Media.js'
-import { Tools } from './collections/Tools.js'
+import { Users } from './collections/Users'
+import { Pages } from './collections/Pages'
+import { Media } from './collections/Media'
+import { Tools } from './collections/Tools'
 
 // For now, we'll use a simple configuration that doesn't require database setup
 const payloadSecret = process.env.PAYLOAD_SECRET;
