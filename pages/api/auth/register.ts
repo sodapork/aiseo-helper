@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getPayload } from 'payload';
-import payloadConfig from '../../../../payload.config';
+import payloadConfig from '../../../payload.config';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
