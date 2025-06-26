@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
+import payloadConfig from '../../../../payload.config'
 
 export async function GET(request: NextRequest) {
   try {
-    const payload = await getPayload()
+    const payload = await getPayload({ config: payloadConfig })
     
     // Check if user is authenticated and is admin
     const { user } = await payload.auth({ headers: request.headers })

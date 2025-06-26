@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
+import payloadConfig from '../../../../payload.config'
 
 export async function PUT(request: NextRequest) {
   try {
@@ -12,7 +13,7 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    const payload = await getPayload()
+    const payload = await getPayload({ config: payloadConfig })
     
     // Get the current user from the session
     const { user } = await payload.auth({ headers: request.headers })

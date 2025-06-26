@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
+import payloadConfig from '../../../../payload.config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,7 +13,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const payload = await getPayload()
+    const payload = await getPayload({ config: payloadConfig })
     
     // Authenticate user with Payload
     const { user, token } = await payload.login({
