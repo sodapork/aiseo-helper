@@ -1,5 +1,6 @@
 'use client'
 
+
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Search, TrendingUp, Target, BarChart3, Zap, ArrowLeft, Download, Share2 } from 'lucide-react'
@@ -27,35 +28,28 @@ export default function KeywordAnalyzer() {
 
     setIsAnalyzing(true)
     
-    // Simulate API call with realistic delay
-    await new Promise(resolve => setTimeout(resolve, 2000))
-
-    // Mock analysis results - in real implementation, this would call your AI API
-    const mockAnalysis: KeywordAnalysis = {
-      keyword: keyword.trim(),
-      aiRelevance: Math.floor(Math.random() * 40) + 60, // 60-100
-      semanticScore: Math.floor(Math.random() * 30) + 70, // 70-100
-      contextStrength: Math.floor(Math.random() * 35) + 65, // 65-100
-      llmUnderstanding: Math.floor(Math.random() * 25) + 75, // 75-100
-      suggestions: [
-        'Add more context around this keyword',
-        'Include related semantic terms',
-        'Provide clear definitions',
-        'Use in natural language patterns'
-      ],
-      relatedTerms: [
-        'artificial intelligence',
-        'machine learning',
-        'neural networks',
-        'deep learning',
-        'AI systems'
-      ],
-      aiContext: `The keyword "${keyword}" is well-understood by AI systems. It has strong semantic connections and appears frequently in AI training data. Consider providing more specific context and examples to improve AI understanding.`
+    try {
+      const res = await fetch('/api/keyword-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ keyword })
+      });
+      const data = await res.json();
+      setAnalysis(data);
+      setAnalysisHistory(prev => [data, ...prev.slice(0, 4)]);
+    } catch (error) {
+      setAnalysis({
+        keyword,
+        aiRelevance: 0,
+        semanticScore: 0,
+        contextStrength: 0,
+        llmUnderstanding: 0,
+        suggestions: ['Error fetching analysis. Please try again.'],
+        relatedTerms: [],
+        aiContext: 'An error occurred while contacting the analysis API.'
+      });
     }
-
-    setAnalysis(mockAnalysis)
-    setAnalysisHistory(prev => [mockAnalysis, ...prev.slice(0, 4)])
-    setIsAnalyzing(false)
+    setIsAnalyzing(false);
   }
 
   const getScoreColor = (score: number) => {
@@ -129,7 +123,7 @@ export default function KeywordAnalyzer() {
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Enter a keyword to analyze for AI systems..."
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                 onKeyPress={(e) => e.key === 'Enter' && analyzeKeyword()}
               />
               <button
@@ -220,7 +214,7 @@ export default function KeywordAnalyzer() {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Optimization Suggestions</h3>
                 <ul className="space-y-2">
-                  {analysis.suggestions.map((suggestion, index) => (
+                  {(analysis.suggestions ?? []).map((suggestion, index) => (
                     <li key={index} className="flex items-start space-x-2">
                       <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-gray-600">{suggestion}</span>
@@ -234,7 +228,7 @@ export default function KeywordAnalyzer() {
             <div className="bg-white rounded-xl shadow-sm p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Related Terms for AI Systems</h3>
               <div className="flex flex-wrap gap-2">
-                {analysis.relatedTerms.map((term, index) => (
+                {(analysis.relatedTerms ?? []).map((term, index) => (
                   <span
                     key={index}
                     className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm hover:bg-blue-200 transition-colors cursor-pointer"

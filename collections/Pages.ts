@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -40,6 +41,7 @@ export const Pages: CollectionConfig = {
       name: 'content',
       type: 'richText',
       label: 'Page Content',
+      editor: lexicalEditor(),
     },
     {
       name: 'hero',

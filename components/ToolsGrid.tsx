@@ -23,7 +23,8 @@ const tools = [
     icon: FileText,
     color: 'from-green-500 to-green-600',
     status: 'active',
-    category: 'Content'
+    category: 'Content',
+    link: '/tools/content-optimizer'
   },
   {
     id: 'semantic-analyzer',

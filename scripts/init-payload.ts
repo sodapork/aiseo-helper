@@ -1,11 +1,10 @@
 import payload from 'payload'
-import config from '../payload.config'
 
 async function initPayload() {
   try {
+    const configModule = await import('../payload.config')
     await payload.init({
-      secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
-      local: true,
+      config: configModule.default,
     })
 
     console.log('Payload initialized successfully!')
