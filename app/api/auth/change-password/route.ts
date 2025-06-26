@@ -27,6 +27,12 @@ export async function PUT(request: NextRequest) {
 
     // Verify current password and update to new password
     try {
+      if (!user.email) {
+        return NextResponse.json(
+          { error: 'User email is missing' },
+          { status: 400 }
+        )
+      }
       await payload.login({
         collection: 'users',
         data: {
