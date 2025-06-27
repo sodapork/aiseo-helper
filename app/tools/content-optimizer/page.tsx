@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { FileText, ArrowLeft, Download, Share2, Zap, Target, MessageSquare, BarChart3, CheckCircle, AlertCircle, Lightbulb } from 'lucide-react'
+import { FileText, ArrowLeft, Download, Share2, Zap, Target, MessageSquare, BarChart3, CheckCircle, AlertCircle, Lightbulb, Globe, Link as LinkIcon } from 'lucide-react'
 import Link from 'next/link'
 
 interface ContentAnalysis {
@@ -26,14 +26,46 @@ interface ContentSuggestion {
 
 export default function ContentOptimizer() {
   const [content, setContent] = useState('')
+  const [url, setUrl] = useState('')
+  const [inputType, setInputType] = useState<'text' | 'url'>('text')
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [isFetchingUrl, setIsFetchingUrl] = useState(false)
   const [analysis, setAnalysis] = useState<ContentAnalysis | null>(null)
   const [analysisHistory, setAnalysisHistory] = useState<ContentAnalysis[]>([])
+  const [error, setError] = useState('')
+
+  const fetchContentFromUrl = async (url: string) => {
+    setIsFetchingUrl(true)
+    setError('')
+    
+    try {
+      const response = await fetch('/api/content-fetcher', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch content from URL')
+      }
+      
+      const data = await response.json()
+      setContent(data.content)
+      setError('')
+    } catch (error) {
+      setError('Failed to fetch content from URL. Please check the URL and try again.')
+      console.error('Error fetching content:', error)
+    } finally {
+      setIsFetchingUrl(false)
+    }
+  }
 
   const analyzeContent = async () => {
     if (!content.trim()) return
 
     setIsAnalyzing(true)
+    setError('')
+    
     try {
       const res = await fetch('/api/content-optimizer', {
         method: 'POST',
@@ -44,6 +76,7 @@ export default function ContentOptimizer() {
       setAnalysis(data);
       setAnalysisHistory(prev => [data, ...prev.slice(0, 4)]);
     } catch (error) {
+      setError('Error analyzing content. Please try again.')
       setAnalysis({
         content,
         aiReadability: 0,
@@ -56,6 +89,11 @@ export default function ContentOptimizer() {
       });
     }
     setIsAnalyzing(false);
+  }
+
+  const handleUrlSubmit = async () => {
+    if (!url.trim()) return
+    await fetchContentFromUrl(url)
   }
 
   const getScoreColor = (score: number) => {
@@ -142,17 +180,107 @@ export default function ContentOptimizer() {
           className="bg-white rounded-xl shadow-sm p-6 mb-8"
         >
           <div className="max-w-4xl mx-auto">
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Content to Optimize
-              </label>
-              <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Paste your content here to get AI optimization suggestions..."
-                className="w-full h-48 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none text-gray-900"
-              />
+            {/* Input Type Tabs */}
+            <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
+              <button
+                onClick={() => setInputType('text')}
+                className={`flex-1 flex items-center justify-center space-x-2 px-4 py-2 rounded-md transition-all duration-200 ${
+                  inputType === 'text'
+                    ? 'bg-white text-green-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                <FileText className="w-4 h-4" />
+                <span>Text Input</span>
+              </button>
+              <button
+                onClick={() => setInputType('url')}
+                className={`flex-1 flex items-center justify-center space-x-2 px-4 py-2 rounded-md transition-all duration-200 ${
+                  inputType === 'url'
+                    ? 'bg-white text-green-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                <Globe className="w-4 h-4" />
+                <span>URL Input</span>
+              </button>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
+                <AlertCircle className="w-5 h-5 text-red-600" />
+                <span className="text-red-700">{error}</span>
+              </div>
+            )}
+
+            {/* Text Input */}
+            {inputType === 'text' && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Content to Optimize
+                </label>
+                <textarea
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="Paste your content here to get AI optimization suggestions..."
+                  className="w-full h-48 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none text-gray-900"
+                />
+              </div>
+            )}
+
+            {/* URL Input */}
+            {inputType === 'url' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Website URL
+                  </label>
+                  <div className="flex space-x-2">
+                    <input
+                      type="url"
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
+                      placeholder="https://example.com/article"
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900"
+                    />
+                    <button
+                      onClick={handleUrlSubmit}
+                      disabled={isFetchingUrl || !url.trim()}
+                      className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                    >
+                      {isFetchingUrl ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Fetching...</span>
+                        </>
+                      ) : (
+                        <>
+                          <LinkIcon className="w-4 h-4" />
+                          <span>Fetch Content</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+                
+                {content && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Fetched Content
+                    </label>
+                    <textarea
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
+                      placeholder="Content will appear here after fetching from URL..."
+                      className="w-full h-48 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none text-gray-900"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Analyze Button */}
             <div className="flex justify-center">
               <button
                 onClick={analyzeContent}
