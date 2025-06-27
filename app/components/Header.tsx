@@ -47,6 +47,12 @@ export default function Header() {
             >
               Keyword Analyzer
             </Link>
+            <Link 
+              href="/blog" 
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
+              Blog
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -75,6 +81,13 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Keyword Analyzer
+              </Link>
+              <Link
+                href="/blog"
+                className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
               </Link>
             </nav>
           </div>

@@ -4,8 +4,15 @@ import { motion } from 'motion/react'
 import { ArrowRight, Zap, TrendingUp, Target } from 'lucide-react'
 
 export default function Hero() {
+  const scrollToTools = () => {
+    const toolsSection = document.getElementById('tools')
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 lg:py-32">
+    <section className="relative overflow-hidden py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.div
@@ -30,12 +37,12 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
           >
-            <button className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-300 flex items-center space-x-2 group">
+            <button 
+              onClick={scrollToTools}
+              className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-300 flex items-center space-x-2 group"
+            >
               <span>Explore Tools</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-colors">
-              Watch Demo
             </button>
           </motion.div>
 
@@ -59,13 +66,6 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-40 left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
     </section>
   )

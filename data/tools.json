@@ -1,0 +1,164 @@
+[
+  {
+    "id": "keyword-analyzer",
+    "name": "LLM Keyword Analyzer",
+    "description": "Analyze how AI systems understand and process your keywords for better LLM discovery",
+    "icon": "Search",
+    "color": "from-blue-500 to-blue-600",
+    "status": "in beta",
+    "category": "Analysis",
+    "link": "/tools/keyword-analyzer",
+    "features": [
+      "AI Relevance Scoring",
+      "Semantic Analysis", 
+      "Context Strength Evaluation",
+      "LLM Understanding Metrics"
+    ],
+    "seo": {
+      "title": "LLM Keyword Analyzer - AI SEO Helper",
+      "description": "Analyze how AI systems understand and process your keywords for better LLM discovery and search optimization.",
+      "keywords": "LLM keyword analysis, AI SEO, semantic analysis, keyword optimization"
+    }
+  },
+  {
+    "id": "content-optimizer",
+    "name": "AI Content Optimizer",
+    "description": "Optimize your content structure for better AI understanding and recommendations",
+    "icon": "FileText",
+    "color": "from-green-500 to-green-600",
+    "status": "in beta",
+    "category": "Content",
+    "link": "/tools/content-optimizer",
+    "features": [
+      "Content Structure Analysis",
+      "AI Readability Scoring",
+      "Semantic Optimization",
+      "Context Enhancement"
+    ],
+    "seo": {
+      "title": "AI Content Optimizer - AI SEO Helper",
+      "description": "Optimize your content structure for better AI understanding and recommendations with our advanced content optimization tool.",
+      "keywords": "AI content optimization, content structure, readability scoring, semantic optimization"
+    }
+  },
+  {
+    "id": "semantic-analyzer",
+    "name": "Semantic Analyzer",
+    "description": "Analyze semantic relationships and context for AI-powered search optimization",
+    "icon": "BarChart3",
+    "color": "from-purple-500 to-purple-600",
+    "status": "in development",
+    "category": "Analysis",
+    "features": [
+      "Semantic Relationship Mapping",
+      "Context Analysis",
+      "Topic Clustering",
+      "Entity Recognition"
+    ],
+    "seo": {
+      "title": "Semantic Analyzer - AI SEO Helper",
+      "description": "Analyze semantic relationships and context for AI-powered search optimization with advanced semantic analysis tools.",
+      "keywords": "semantic analysis, AI search, context analysis, topic clustering"
+    }
+  },
+  {
+    "id": "ai-monitor",
+    "name": "AI Discovery Monitor",
+    "description": "Track how AI assistants and chatbots discover and reference your content",
+    "icon": "Target",
+    "color": "from-red-500 to-red-600",
+    "status": "in development",
+    "category": "Monitoring",
+    "features": [
+      "AI Discovery Tracking",
+      "Chatbot Reference Monitoring",
+      "Content Performance Analytics",
+      "AI Visibility Reports"
+    ],
+    "seo": {
+      "title": "AI Discovery Monitor - AI SEO Helper",
+      "description": "Track how AI assistants and chatbots discover and reference your content with comprehensive monitoring tools.",
+      "keywords": "AI discovery, chatbot monitoring, content tracking, AI visibility"
+    }
+  },
+  {
+    "id": "context-builder",
+    "name": "Context Builder",
+    "description": "Build rich context that helps AI systems better understand your content",
+    "icon": "Globe",
+    "color": "from-yellow-500 to-yellow-600",
+    "status": "in development",
+    "category": "Content",
+    "features": [
+      "Context Enhancement",
+      "AI Understanding Optimization",
+      "Semantic Context Building",
+      "Content Enrichment"
+    ],
+    "seo": {
+      "title": "Context Builder - AI SEO Helper",
+      "description": "Build rich context that helps AI systems better understand your content with advanced context building tools.",
+      "keywords": "context building, AI understanding, semantic context, content enrichment"
+    }
+  },
+  {
+    "id": "ai-trends",
+    "name": "AI Trend Analyzer",
+    "description": "Identify trending topics and queries that AI systems are focusing on",
+    "icon": "TrendingUp",
+    "color": "from-indigo-500 to-indigo-600",
+    "status": "in development",
+    "category": "Research",
+    "features": [
+      "AI Trend Detection",
+      "Topic Analysis",
+      "Query Pattern Recognition",
+      "Trend Forecasting"
+    ],
+    "seo": {
+      "title": "AI Trend Analyzer - AI SEO Helper",
+      "description": "Identify trending topics and queries that AI systems are focusing on with advanced trend analysis tools.",
+      "keywords": "AI trends, topic analysis, query patterns, trend forecasting"
+    }
+  },
+  {
+    "id": "chatbot-optimizer",
+    "name": "Chatbot Optimizer",
+    "description": "Optimize your content to be recommended by AI chatbots and assistants",
+    "icon": "MessageSquare",
+    "color": "from-pink-500 to-pink-600",
+    "status": "in development",
+    "category": "Optimization",
+    "features": [
+      "Chatbot Optimization",
+      "AI Assistant Targeting",
+      "Recommendation Enhancement",
+      "Conversational SEO"
+    ],
+    "seo": {
+      "title": "Chatbot Optimizer - AI SEO Helper",
+      "description": "Optimize your content to be recommended by AI chatbots and assistants with specialized optimization tools.",
+      "keywords": "chatbot optimization, AI assistants, recommendation enhancement, conversational SEO"
+    }
+  },
+  {
+    "id": "llm-technical",
+    "name": "LLM Technical SEO",
+    "description": "Technical optimization specifically for AI-powered search engines",
+    "icon": "Cpu",
+    "color": "from-gray-500 to-gray-600",
+    "status": "in development",
+    "category": "Technical",
+    "features": [
+      "Technical SEO for AI",
+      "LLM Crawlability",
+      "AI Indexing Optimization",
+      "Technical Performance"
+    ],
+    "seo": {
+      "title": "LLM Technical SEO - AI SEO Helper",
+      "description": "Technical optimization specifically for AI-powered search engines with advanced technical SEO tools.",
+      "keywords": "LLM technical SEO, AI indexing, crawlability, technical optimization"
+    }
+  }
+] 

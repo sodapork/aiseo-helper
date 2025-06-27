@@ -1,0 +1,33 @@
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { Calendar, Clock, User, Tag, ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+import { getBlogPostBySlug, getRecentBlogPosts } from '@/lib/data'
+import { MarkdownContent } from '@/lib/markdown'
+import RelatedPosts from '../../components/RelatedPosts'
+
+export async function generateMetadata(props) {
+  const post = getBlogPostBySlug(props.params.slug)
+  
+  if (!post) {
+    return {
+      title: 'Blog Post Not Found - AI SEO Helper',
+      description: 'The requested blog post could not be found.'
+    }
+  }
+
+  return {
+    title: post.seo.title,
+    description: post.seo.description,
+    keywords: post.seo.keywords,
+    openGraph: {
+      title: post.seo.title,
+      description: post.seo.description,
+      images: [post.featuredImage.url],
+    },
+  }
+}
+
+export default function Page({ params }: { params: { slug: string } }) {
+  return <div>Slug: {params.slug}</div>
+} 
