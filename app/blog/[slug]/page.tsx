@@ -6,8 +6,8 @@ import { getBlogPostBySlug, getRecentBlogPosts } from '@/lib/data'
 import { MarkdownContent } from '@/lib/markdown'
 import RelatedPosts from '../../components/RelatedPosts'
 
-export async function generateMetadata(props) {
-  const post = getBlogPostBySlug(props.params.slug)
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const post = getBlogPostBySlug(params.slug)
   
   if (!post) {
     return {
@@ -29,5 +29,12 @@ export async function generateMetadata(props) {
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
-  return <div>Slug: {params.slug}</div>
+  const post = getBlogPostBySlug(params.slug)
+  if (!post) return notFound()
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <MarkdownContent content={post.content} />
+    </div>
+  )
 } 
