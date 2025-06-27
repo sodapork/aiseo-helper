@@ -128,8 +128,9 @@
     "description": "Identify trending topics and queries that AI systems are focusing on",
     "icon": "TrendingUp",
     "color": "from-indigo-500 to-indigo-600",
-    "status": "in development",
+    "status": "in beta",
     "category": "Research",
+    "link": "/tools/trend-analyzer",
     "features": [
       "AI Trend Detection",
       "Topic Analysis",
