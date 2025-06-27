@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Search, FileText, BarChart3, Target, Globe, TrendingUp, Zap, Settings, MessageSquare, Cpu } from 'lucide-react'
+import { Search, FileText, BarChart3, Target, Globe, TrendingUp, Zap, Settings, MessageSquare, Cpu, BookOpen } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { getAllTools, type Tool } from '@/lib/data'
 
@@ -16,7 +16,8 @@ const iconMap = {
   Zap,
   Settings,
   MessageSquare,
-  Cpu
+  Cpu,
+  BookOpen
 }
 
 export default function ToolsGrid() {

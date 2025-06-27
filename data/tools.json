@@ -42,6 +42,27 @@
     }
   },
   {
+    "id": "glossary-generator",
+    "name": "AI Glossary Generator",
+    "description": "Create comprehensive glossary terms optimized for AI and LLM understanding",
+    "icon": "BookOpen",
+    "color": "from-purple-500 to-indigo-500",
+    "status": "in beta",
+    "category": "Content",
+    "link": "/tools/glossary-generator",
+    "features": [
+      "AI-Optimized Structure",
+      "Citation-Friendly Content",
+      "Audience-Tailored Tone",
+      "Semantic Best Practices"
+    ],
+    "seo": {
+      "title": "AI Glossary Generator - AI SEO Helper",
+      "description": "Create comprehensive glossary terms optimized for AI and LLM understanding with structured, citation-friendly content.",
+      "keywords": "glossary generator, AI content, citation optimization, semantic structure"
+    }
+  },
+  {
     "id": "semantic-analyzer",
     "name": "Semantic Analyzer",
     "description": "Analyze semantic relationships and context for AI-powered search optimization",
