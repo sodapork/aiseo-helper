@@ -19,33 +19,7 @@ export function markdownToHtml(markdown: string): string {
   // Lists
   html = html.replace(/^\* (.*$)/gim, '<li>$1</li>')
   html = html.replace(/^- (.*$)/gim, '<li>$1</li>')
-  // Handle lists without the 's' flag
-  const lines = html.split('\n')
-  let inList = false
-  let listContent = ''
-  
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i].match(/^<li>.*<\/li>$/)) {
-      if (!inList) {
-        inList = true
-        listContent = lines[i]
-      } else {
-        listContent += lines[i]
-      }
-    } else {
-      if (inList) {
-        lines[i-1] = `<ul class="list-disc list-inside mb-4">${listContent}</ul>`
-        inList = false
-        listContent = ''
-      }
-    }
-  }
-  
-  if (inList) {
-    lines[lines.length - 1] = `<ul class="list-disc list-inside mb-4">${listContent}</ul>`
-  }
-  
-  html = lines.join('\n')
+  html = html.replace(/(<li>.*<\/li>)/s, '<ul class="list-disc list-inside mb-4">$1</ul>')
 
   // Paragraphs
   html = html.replace(/\n\n/g, '</p><p class="mb-4">')

@@ -24,11 +24,16 @@ export async function POST(req: NextRequest) {
   const { topic, industry, timeframe = '30d' } = await req.json();
   console.log('Analyzing trends for:', topic, 'in', industry);
 
-  const dataStatus = {
-    googleTrends: 'mock' as const,
-    socialMedia: 'mock' as const,
-    news: 'mock' as const,
-    aiConversations: 'mock' as const
+  const dataStatus: {
+    googleTrends: 'real' | 'mock' | 'error';
+    socialMedia: 'real' | 'mock' | 'error';
+    news: 'real' | 'mock' | 'error';
+    aiConversations: 'real' | 'mock' | 'error';
+  } = {
+    googleTrends: 'mock',
+    socialMedia: 'mock',
+    news: 'mock',
+    aiConversations: 'mock'
   };
   const dataMessages: string[] = [];
 
@@ -484,9 +489,9 @@ function extractTrendingKeywords(articles: any[]): string[] {
   
   articles.forEach(article => {
     const title = (article.title || '').toLowerCase();
-    const words = title.split(/\s+/).filter(word => word.length > 3);
+    const words = title.split(/\s+/).filter((word: string) => word.length > 3);
     
-    words.forEach(word => {
+    words.forEach((word: string) => {
       keywordCounts[word] = (keywordCounts[word] || 0) + 1;
     });
   });

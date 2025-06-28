@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from './components/Header'
 import DynamicBackground from './components/DynamicBackground'
+import { AuthProvider } from './components/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,12 +38,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <DynamicBackground>
-          <Header />
-          <main className="pt-16">
-            {children}
-          </main>
-        </DynamicBackground>
+        <AuthProvider>
+          <DynamicBackground>
+            <Header />
+            <main className="pt-16">
+              {children}
+            </main>
+          </DynamicBackground>
+        </AuthProvider>
       </body>
     </html>
   )

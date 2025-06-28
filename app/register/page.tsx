@@ -84,11 +84,11 @@ export default function RegisterPage() {
       return
     }
 
-    const result = await register(formData)
-    if (!result.success) {
-      setError(result.error || 'Registration failed')
-    } else {
+    try {
+      await register(formData.email, formData.password, formData.name)
       setSuccess('Account created successfully! Redirecting...')
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Registration failed')
     }
   }
 

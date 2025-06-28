@@ -25,9 +25,11 @@ export default function LoginPage() {
       return
     }
 
-    const result = await login(email, password)
-    if (!result.success) {
-      setError(result.error || 'Login failed')
+    try {
+      await login(email, password)
+      // Login successful - user will be redirected by AuthProvider
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Login failed')
     }
   }
 
@@ -42,14 +44,14 @@ export default function LoginPage() {
     }
 
     setIsResetting(true)
-    const result = await forgotPassword(email)
-    setIsResetting(false)
-
-    if (result.success) {
+    try {
+      await forgotPassword(email)
       setSuccess('Password reset email sent! Check your inbox.')
       setIsForgotPassword(false)
-    } else {
-      setError(result.error || 'Failed to send reset email')
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Failed to send reset email')
+    } finally {
+      setIsResetting(false)
     }
   }
 
