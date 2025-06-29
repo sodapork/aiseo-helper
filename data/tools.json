@@ -63,23 +63,24 @@
     }
   },
   {
-    "id": "semantic-analyzer",
-    "name": "Semantic Analyzer",
-    "description": "Analyze semantic relationships and context for AI-powered search optimization",
-    "icon": "BarChart3",
+    "id": "sitemap-builder",
+    "name": "AI Site Map Builder",
+    "description": "Upload your sitemap and get an AI-optimized version for better LLM discovery",
+    "icon": "Map",
     "color": "from-purple-500 to-purple-600",
-    "status": "in development",
-    "category": "Analysis",
+    "status": "in beta",
+    "category": "Technical",
+    "link": "/tools/sitemap-builder",
     "features": [
-      "Semantic Relationship Mapping",
-      "Context Analysis",
-      "Topic Clustering",
-      "Entity Recognition"
+      "Sitemap AI Analysis",
+      "LLM Discovery Optimization",
+      "Structure Enhancement",
+      "AI-Friendly Formatting"
     ],
     "seo": {
-      "title": "Semantic Analyzer - SEO Helper",
-      "description": "Analyze semantic relationships and context for AI-powered search optimization with advanced semantic analysis tools.",
-      "keywords": "semantic analysis, AI search, context analysis, topic clustering"
+      "title": "AI Site Map Builder - SEO Helper",
+      "description": "Upload your sitemap and get an AI-optimized version for better LLM discovery and AI search engine compatibility.",
+      "keywords": "sitemap builder, AI sitemap, LLM discovery, AI search optimization"
     }
   },
   {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { fetchGoogleTrendsCombined } from '../../../lib/googleTrends';
 
 interface TrendData {
   topic: string;
@@ -40,6 +41,16 @@ export async function POST(req: NextRequest) {
   try {
     // 1. Google Trends Data
     const googleTrendsData = await fetchGoogleTrends(topic, timeframe);
+    const googleTrendsNormalized = {
+      interestOverTime: googleTrendsData.data?.interest_over_time ?? 0,
+      relatedQueries: googleTrendsData.data?.related_queries ?? [],
+      relatedTopics: googleTrendsData.data?.related_topics ?? [],
+      timeSeriesData: googleTrendsData.data?.time_series_data ?? [],
+      geographicData: googleTrendsData.data?.geographic_data ?? [],
+      trendDirection: googleTrendsData.data?.trend_direction ?? 'stable',
+      success: googleTrendsData.success,
+      message: googleTrendsData.message
+    };
     dataStatus.googleTrends = googleTrendsData.success ? 'real' : 'mock';
     if (googleTrendsData.message) {
       dataMessages.push(`Google Trends: ${googleTrendsData.message}`);
@@ -70,16 +81,28 @@ export async function POST(req: NextRequest) {
     const trendAnalysis = await analyzeTrendsWithAI({
       topic,
       industry,
+      googleTrends: googleTrendsNormalized,
+      socialMedia: socialMediaData,
+      news: newsData,
+      aiConversations: aiConversationData,
+      dataStatus,
+      dataMessages,
+      timeframe
+    });
+
+    // 6. Aggregate raw data for frontend display
+    const rawData = {
       googleTrends: googleTrendsData,
       socialMedia: socialMediaData,
       news: newsData,
       aiConversations: aiConversationData
-    });
+    };
 
     return NextResponse.json({
       ...trendAnalysis,
       dataStatus,
-      dataMessages
+      dataMessages,
+      rawData
     });
   } catch (error) {
     console.error('Error in trend analysis:', error);
@@ -102,97 +125,7 @@ export async function POST(req: NextRequest) {
 }
 
 async function fetchGoogleTrends(topic: string, timeframe: string) {
-  try {
-    // Method 1: Try with proper headers to avoid bot detection
-    const headers = {
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Accept': 'application/json, text/plain, */*',
-      'Accept-Language': 'en-US,en;q=0.9',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'DNT': '1',
-      'Connection': 'keep-alive',
-      'Upgrade-Insecure-Requests': '1',
-      'Sec-Fetch-Dest': 'document',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Site': 'none',
-      'Cache-Control': 'max-age=0'
-    };
-
-    // Step 1: Get the token from Google Trends
-    const tokenResponse = await fetch('https://trends.google.com/trends/api/explore?hl=en-US&tz=-120&req={"comparisonItem":[{"keyword":"' + encodeURIComponent(topic) + '","geo":"","time":"' + timeframe + '"}],"category":0,"property":""}&tz=-120', {
-      headers,
-      method: 'GET'
-    });
-    
-    if (!tokenResponse.ok) {
-      throw new Error(`Failed to get Google Trends token: ${tokenResponse.status}`);
-    }
-    
-    const tokenText = await tokenResponse.text();
-    const tokenMatch = tokenText.match(/"token":"([^"]+)"/);
-    const token = tokenMatch ? tokenMatch[1] : null;
-    
-    if (!token) {
-      throw new Error('Could not extract token from Google Trends');
-    }
-    
-    // Step 2: Get the actual trend data using the token
-    const trendsResponse = await fetch(`https://trends.google.com/trends/api/widgetdata/multiline?hl=en-US&tz=-120&req={"time":"${timeframe}","keywordGroups":[{"name":"${topic}","keywords":"${topic}","geo":"","time":"${timeframe}"}]}&token=${token}`, {
-      headers,
-      method: 'GET'
-    });
-    
-    if (!trendsResponse.ok) {
-      throw new Error(`Failed to get Google Trends data: ${trendsResponse.status}`);
-    }
-    
-    const trendsText = await trendsResponse.text();
-    const cleanJson = trendsText.replace(/^\)\]\}'/, '');
-    const trendsData = JSON.parse(cleanJson);
-    
-    // Step 3: Get related queries
-    const relatedQueriesResponse = await fetch(`https://trends.google.com/trends/api/widgetdata/relatedsearches?hl=en-US&tz=-120&req={"restriction":{"geo":{},"time":"${timeframe}","originalTimeRangeForExploreUrl":"${timeframe}"},"keywordType":"QUERY","metric":["TOP","RISING"],"trendinessSettings":{"compareTime":"${timeframe}"},"requestOptions":{"property":"","backend":"IZG","category":0},"language":"en"}&token=${token}`, {
-      headers,
-      method: 'GET'
-    });
-    
-    let relatedQueries = [];
-    let relatedTopics = [];
-    
-    if (relatedQueriesResponse.ok) {
-      const relatedText = await relatedQueriesResponse.text();
-      const cleanRelatedJson = relatedText.replace(/^\)\]\}'/, '');
-      const relatedData = JSON.parse(cleanRelatedJson);
-      
-      // Extract related queries and topics
-      if (relatedData.default?.rankedList) {
-        relatedQueries = relatedData.default.rankedList[0]?.rankedKeyword?.slice(0, 10).map((item: any) => item.query) || [];
-        relatedTopics = relatedData.default.rankedList[1]?.rankedKeyword?.slice(0, 10).map((item: any) => item.topic.title) || [];
-      }
-    }
-    
-    // Calculate interest over time (average of the time series data)
-    const timeSeriesData = trendsData.default?.timelineData || [];
-    const interestOverTime = timeSeriesData.length > 0 
-      ? Math.round(timeSeriesData.reduce((sum: number, point: any) => sum + point.value[0], 0) / timeSeriesData.length)
-      : 0;
-    
-    return {
-      interestOverTime,
-      relatedQueries,
-      relatedTopics,
-      timeSeriesData: timeSeriesData.slice(-7), // Last 7 data points
-      geographicData: [],
-      trendDirection: calculateTrendDirection(timeSeriesData),
-      success: true,
-      message: 'Real Google Trends data retrieved successfully'
-    };
-  } catch (error) {
-    console.error('Google Trends error:', error);
-    
-    // Method 2: Fallback to alternative data source or enhanced mock data
-    return await fetchAlternativeTrendData(topic, timeframe);
-  }
+  return await fetchGoogleTrendsCombined(topic, timeframe);
 }
 
 async function fetchAlternativeTrendData(topic: string, timeframe: string) {

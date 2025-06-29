@@ -63,40 +63,6 @@ export default function DynamicBackground({ children }: DynamicBackgroundProps) 
         }}
       />
 
-      {/* Moderate animated background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div 
-          className="absolute w-[400px] h-[400px] bg-blue-400 rounded-full mix-blend-multiply filter blur-2xl animate-blob"
-          style={{
-            left: `${mousePosition.x}%`,
-            top: `${mousePosition.y}%`,
-            transform: 'translate(-50%, -50%)',
-            opacity: isHovering ? 0.4 : 0.2,
-            transition: 'opacity 0.5s ease-in-out, left 0.3s ease-out, top 0.3s ease-out'
-          }}
-        />
-        <div 
-          className="absolute w-[400px] h-[400px] bg-green-400 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-2000"
-          style={{
-            left: `${100 - mousePosition.x}%`,
-            top: `${100 - mousePosition.y}%`,
-            transform: 'translate(-50%, -50%)',
-            opacity: isHovering ? 0.4 : 0.2,
-            transition: 'opacity 0.5s ease-in-out, left 0.3s ease-out, top 0.3s ease-out'
-          }}
-        />
-        <div 
-          className="absolute w-[400px] h-[400px] bg-purple-400 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-4000"
-          style={{
-            left: `${mousePosition.y}%`,
-            top: `${mousePosition.x}%`,
-            transform: 'translate(-50%, -50%)',
-            opacity: isHovering ? 0.4 : 0.2,
-            transition: 'opacity 0.5s ease-in-out, left 0.3s ease-out, top 0.3s ease-out'
-          }}
-        />
-      </div>
-      
       {/* Content */}
       <div className="relative z-10">
         {children}
