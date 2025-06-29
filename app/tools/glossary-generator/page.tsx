@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { BookOpen, ArrowLeft, Download, Share2, Settings, FileText, Copy, CheckCircle, AlertCircle, Sparkles, Target, Users } from 'lucide-react'
+import { BookOpen, ArrowLeft, Download, Share2, Settings, FileText, Copy, CheckCircle, AlertCircle, Sparkles, Target, Users, Brain, Lightbulb, Database, Activity } from 'lucide-react'
 import Link from 'next/link'
 
 interface GlossaryEntry {
@@ -116,45 +116,135 @@ export default function GlossaryGenerator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/tools" className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors">
-                <ArrowLeft className="w-5 h-5" />
-                <span>Back to Tools</span>
-              </Link>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg">
-                <BookOpen className="w-5 h-5 text-white" />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <Link href="/tools" className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-4">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Tools
+          </Link>
+          <div className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">Glossary Generator</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <button className="text-gray-600 hover:text-purple-600 transition-colors">
-                <Share2 className="w-5 h-5" />
-              </button>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Glossary Generator</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+              Create comprehensive glossary terms optimized for AI and LLM understanding. Generate structured, citation-friendly content that follows semantic best practices.
+            </p>
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-medium">
+              <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+              Beta Version
             </div>
           </div>
         </div>
-      </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
+        {/* Feature Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            AI Glossary Generator
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Create comprehensive glossary terms optimized for AI and LLM understanding. Generate structured, citation-friendly content that follows semantic best practices.
-          </p>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-4">
+              <BookOpen className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Optimized Structure</h3>
+            <p className="text-gray-600 text-sm">
+              Structured content that follows semantic best practices for better AI understanding and citation.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mb-4">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Citation-Friendly Content</h3>
+            <p className="text-gray-600 text-sm">
+              Content designed to be easily cited by AI systems with clear definitions and real-world examples.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-4">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Audience-Tailored Tone</h3>
+            <p className="text-gray-600 text-sm">
+              Customize tone and style for your specific industry and target audience needs.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4">
+              <Brain className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Semantic Best Practices</h3>
+            <p className="text-gray-600 text-sm">
+              Follow semantic best practices to ensure AI systems can understand and process your content effectively.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center mb-4">
+              <Database className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">LLM Understanding</h3>
+            <p className="text-gray-600 text-sm">
+              Optimized for large language models to better comprehend and reference your glossary terms.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+              <Lightbulb className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Generation</h3>
+            <p className="text-gray-600 text-sm">
+              AI-powered generation that creates comprehensive, well-structured glossary entries automatically.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* How It Works Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl shadow-sm p-8 mb-8"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">1</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Enter Your Term</h3>
+              <p className="text-gray-600 text-sm">
+                Input the term you want to define and customize tone, industry, and target audience settings.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">2</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Generation</h3>
+              <p className="text-gray-600 text-sm">
+                Our AI system generates comprehensive glossary entries optimized for AI understanding and citation.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">3</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Get Your Entry</h3>
+              <p className="text-gray-600 text-sm">
+                Receive a structured, citation-friendly glossary entry ready for use in your content.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -162,9 +252,13 @@ export default function GlossaryGenerator() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="bg-white rounded-xl shadow-sm p-6"
           >
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Generate Your Glossary Entry</h2>
+              <p className="text-gray-600">Create AI-optimized glossary terms with custom settings</p>
+            </div>
             <div className="space-y-6">
               <div>
                 <label htmlFor="term" className="block text-sm font-medium text-gray-700 mb-2">
@@ -262,7 +356,7 @@ export default function GlossaryGenerator() {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
             className="bg-white rounded-xl shadow-sm p-6"
           >
             <div className="flex items-center justify-between mb-4">
@@ -330,47 +424,6 @@ export default function GlossaryGenerator() {
             )}
           </motion.div>
         </div>
-
-        {/* Features Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            Why Use Our Glossary Generator?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mb-4">
-                <Target className="w-6 h-6 text-purple-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Optimized Structure</h3>
-              <p className="text-gray-600">
-                Structured content that follows semantic best practices for better AI understanding and citation.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-lg mb-4">
-                <FileText className="w-6 h-6 text-indigo-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Citation-Friendly</h3>
-              <p className="text-gray-600">
-                Content designed to be easily cited by AI systems with clear definitions and real-world examples.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mb-4">
-                <Users className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Audience-Tailored</h3>
-              <p className="text-gray-600">
-                Customize tone and style for your specific industry and target audience needs.
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </div>
   )

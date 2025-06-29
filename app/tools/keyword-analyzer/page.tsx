@@ -1,9 +1,8 @@
 'use client'
 
-
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { Search, TrendingUp, Target, BarChart3, Zap, ArrowLeft, Download, Share2 } from 'lucide-react'
+import { Search, TrendingUp, Target, BarChart3, Zap, ArrowLeft, Download, Share2, Brain, Lightbulb, Activity, Database, Users, FileText } from 'lucide-react'
 import Link from 'next/link'
 
 interface KeywordAnalysis {
@@ -68,54 +67,148 @@ export default function KeywordAnalyzer() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
-                <ArrowLeft className="w-5 h-5" />
-                <span>Back to Tools</span>
-              </Link>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg">
-                <Search className="w-5 h-5 text-white" />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <Link href="/tools" className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-4">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Tools
+          </Link>
+          <div className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                <Search className="w-8 h-8 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">LLM Keyword Analyzer</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <button className="text-gray-600 hover:text-blue-600 transition-colors">
-                <Share2 className="w-5 h-5" />
-              </button>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">LLM Keyword Analyzer</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+              Analyze how AI systems understand and process your keywords. Get insights into semantic relevance, context strength, and LLM understanding to optimize for AI-powered discovery.
+            </p>
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-medium">
+              <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+              Beta Version
             </div>
           </div>
         </div>
-      </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
+        {/* Feature Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            LLM Keyword Analyzer
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Analyze how AI systems understand and process your keywords. Get insights into semantic relevance, context strength, and LLM understanding to optimize for AI-powered discovery.
-          </p>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+              <Brain className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Relevance Scoring</h3>
+            <p className="text-gray-600 text-sm">
+              Understand how relevant your keywords are to AI systems and their processing capabilities.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-4">
+              <BarChart3 className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Semantic Analysis</h3>
+            <p className="text-gray-600 text-sm">
+              Deep semantic understanding of how AI models interpret and process your keywords.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-4">
+              <Zap className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Context Strength Evaluation</h3>
+            <p className="text-gray-600 text-sm">
+              Measure how well AI systems can contextualize and understand your keywords.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">LLM Understanding Metrics</h3>
+            <p className="text-gray-600 text-sm">
+              Comprehensive metrics on how language models comprehend and process your keywords.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center mb-4">
+              <Database className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Processing Insights</h3>
+            <p className="text-gray-600 text-sm">
+              Detailed insights into how AI systems process and categorize your keywords.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mb-4">
+              <Lightbulb className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Optimization Recommendations</h3>
+            <p className="text-gray-600 text-sm">
+              Get actionable recommendations to improve your keywords for better AI discovery.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* How It Works Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl shadow-sm p-8 mb-8"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">1</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Enter Your Keyword</h3>
+              <p className="text-gray-600 text-sm">
+                Input any keyword or phrase you want to analyze for AI system understanding and processing.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">2</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Analysis</h3>
+              <p className="text-gray-600 text-sm">
+                Our system analyzes semantic relevance, context strength, and LLM understanding patterns.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">3</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Get Insights</h3>
+              <p className="text-gray-600 text-sm">
+                Receive comprehensive analysis with scores, suggestions, and optimization recommendations.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Input Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-xl shadow-sm p-6 mb-8"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="bg-white rounded-2xl shadow-sm p-8 mb-8"
         >
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Start Your Keyword Analysis</h2>
+            <p className="text-gray-600">Understand how AI systems process your keywords and optimize for better discovery</p>
+          </div>
           <div className="max-w-2xl mx-auto">
             <div className="flex space-x-4">
               <input

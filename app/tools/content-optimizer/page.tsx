@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { FileText, ArrowLeft, Download, Share2, Zap, Target, MessageSquare, BarChart3, CheckCircle, AlertCircle, Lightbulb, Globe, Link as LinkIcon } from 'lucide-react'
+import { FileText, ArrowLeft, Download, Share2, Zap, Target, MessageSquare, BarChart3, CheckCircle, AlertCircle, Lightbulb, Globe, Link as LinkIcon, Brain, Users, Database, Activity } from 'lucide-react'
 import Link from 'next/link'
 
 interface ContentAnalysis {
@@ -131,54 +131,148 @@ export default function ContentOptimizer() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors">
-                <ArrowLeft className="w-5 h-5" />
-                <span>Back to Tools</span>
-              </Link>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg">
-                <FileText className="w-5 h-5 text-white" />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <Link href="/tools" className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-4">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Tools
+          </Link>
+          <div className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center">
+                <FileText className="w-8 h-8 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">AI Content Optimizer</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <button className="text-gray-600 hover:text-green-600 transition-colors">
-                <Share2 className="w-5 h-5" />
-              </button>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Content Optimizer</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+              Optimize your content structure and clarity for better AI understanding. Get actionable suggestions to improve how AI systems discover, process, and recommend your content.
+            </p>
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-medium">
+              <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+              Beta Version
             </div>
           </div>
         </div>
-      </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
+        {/* Feature Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            AI Content Optimizer
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Optimize your content structure and clarity for better AI understanding. Get actionable suggestions to improve how AI systems discover, process, and recommend your content.
-          </p>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-4">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Structure Analysis</h3>
+            <p className="text-gray-600 text-sm">
+              Analyze and improve the structure of your content for better AI comprehension and processing.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+              <Brain className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Readability Scoring</h3>
+            <p className="text-gray-600 text-sm">
+              Get detailed scores on how easily AI systems can read, parse, and understand your content.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-4">
+              <Zap className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Semantic Optimization</h3>
+            <p className="text-gray-600 text-sm">
+              Optimize semantic relationships and context to improve AI understanding and recommendations.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Context Enhancement</h3>
+            <p className="text-gray-600 text-sm">
+              Enhance context clarity to help AI systems better understand and recommend your content.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center mb-4">
+              <Database className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">LLM Compatibility</h3>
+            <p className="text-gray-600 text-sm">
+              Ensure your content is optimized for large language models and AI-powered search engines.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mb-4">
+              <Lightbulb className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Actionable Suggestions</h3>
+            <p className="text-gray-600 text-sm">
+              Receive specific, actionable recommendations to improve your content for AI discovery.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* How It Works Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl shadow-sm p-8 mb-8"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">1</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Input Your Content</h3>
+              <p className="text-gray-600 text-sm">
+                Paste your content or provide a URL to fetch content for AI optimization analysis.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">2</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Analysis</h3>
+              <p className="text-gray-600 text-sm">
+                Our system analyzes readability, context clarity, semantic structure, and LLM compatibility.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">3</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Get Optimized Content</h3>
+              <p className="text-gray-600 text-sm">
+                Receive detailed suggestions and an optimized version of your content for better AI discovery.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Input Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-xl shadow-sm p-6 mb-8"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="bg-white rounded-2xl shadow-sm p-8 mb-8"
         >
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Start Your Content Optimization</h2>
+            <p className="text-gray-600">Optimize your content for better AI understanding and discovery</p>
+          </div>
           <div className="max-w-4xl mx-auto">
             {/* Input Type Tabs */}
             <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
