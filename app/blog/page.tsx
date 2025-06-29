@@ -7,8 +7,8 @@ import BlogFilters from '../components/BlogFilters'
 import { getAllBlogPosts } from '@/lib/data'
 
 export const metadata: Metadata = {
-  title: 'Blog - AI SEO Helper',
-  description: 'Latest insights, tips, and strategies for AI SEO optimization. Learn how to optimize your content for AI search engines and LLMs.',
+  title: 'Blog - SEO Helper',
+  description: 'Latest insights and guides on LLM optimization, AI SEO, and getting your content discovered by AI systems.',
   keywords: 'AI SEO blog, LLM optimization tips, AI search strategies, content optimization',
 }
 

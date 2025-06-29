@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Calendar, Clock, User, Tag, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -6,25 +6,24 @@ import { getBlogPostBySlug, getRecentBlogPosts } from '@/lib/data'
 import { MarkdownContent } from '@/lib/markdown'
 import RelatedPosts from '../../components/RelatedPosts'
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const post = getBlogPostBySlug(slug)
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = getBlogPostBySlug(params.slug)
   
   if (!post) {
     return {
-      title: 'Blog Post Not Found - AI SEO Helper',
-      description: 'The requested blog post could not be found.'
+      title: 'Blog Post Not Found - SEO Helper',
     }
   }
 
   return {
-    title: post.seo.title,
-    description: post.seo.description,
-    keywords: post.seo.keywords,
+    title: `${post.title} - SEO Helper`,
+    description: post.excerpt,
     openGraph: {
-      title: post.seo.title,
-      description: post.seo.description,
-      images: [post.featuredImage.url],
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.publishedAt,
+      authors: [post.author],
     },
   }
 }

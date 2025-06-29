@@ -8,20 +8,20 @@ import { AuthProvider } from './components/AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'AI SEO Helper - LLM Optimization Tools for AI Search',
+  title: 'SEO Helper - LLM Optimization Tools for AI Search',
   description: 'Professional tools to optimize your website for AI search engines, LLMs, and AI-powered discovery. Get found by AI assistants and chatbots.',
   keywords: 'LLM SEO, AI search optimization, AI discovery, chatbot optimization, AI assistant visibility, semantic search',
-  authors: [{ name: 'AI SEO Helper' }],
+  authors: [{ name: 'SEO Helper' }],
   openGraph: {
-    title: 'AI SEO Helper - LLM Optimization Tools for AI Search',
+    title: 'SEO Helper - LLM Optimization Tools for AI Search',
     description: 'Professional tools to optimize your website for AI search engines, LLMs, and AI-powered discovery. Get found by AI assistants and chatbots.',
     url: 'https://aiseohelper.com',
-    siteName: 'AI SEO Helper',
+    siteName: 'SEO Helper',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI SEO Helper - LLM Optimization Tools for AI Search',
+    title: 'SEO Helper - LLM Optimization Tools for AI Search',
     description: 'Professional tools to optimize your website for AI search engines, LLMs, and AI-powered discovery. Get found by AI assistants and chatbots.',
   },
   robots: {
