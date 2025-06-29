@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { TrendingUp, Target, BarChart3, Zap, ArrowLeft, Download, Share2, Globe, Clock, TrendingDown } from 'lucide-react'
+import { TrendingUp, Target, BarChart3, Zap, ArrowLeft, Download, Share2, Globe, Clock, TrendingDown, Search, Users, Lightbulb, Activity, Database } from 'lucide-react'
 import Link from 'next/link'
 
 interface TrendAnalysis {
@@ -23,6 +23,7 @@ interface TrendAnalysis {
     aiConversations: 'real' | 'mock' | 'error'
   }
   dataMessages: string[]
+  rawData?: any
 }
 
 export default function TrendAnalyzer() {
@@ -102,20 +103,140 @@ export default function TrendAnalyzer() {
             Back to Tools
           </Link>
           <div className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+            </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Trend Analyzer</h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Identify trending topics and queries that AI systems are focusing on
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+              Identify trending topics and queries that AI systems are focusing on. Get insights into what's capturing AI attention and optimize your content accordingly.
             </p>
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-medium">
+              <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+              Beta Version
+            </div>
           </div>
         </div>
+
+        {/* Feature Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+        >
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+              <Search className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Trend Detection</h3>
+            <p className="text-gray-600 text-sm">
+              Discover what topics and queries are gaining traction in AI conversations and search patterns.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-4">
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Real-time Analysis</h3>
+            <p className="text-gray-600 text-sm">
+              Get up-to-date insights from Google Trends, social media, news sources, and AI conversation data.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-4">
+              <TrendingUp className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Trend Forecasting</h3>
+            <p className="text-gray-600 text-sm">
+              Predict future trends with confidence scoring and velocity analysis to stay ahead of the curve.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-center mb-4">
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Engagement Scoring</h3>
+            <p className="text-gray-600 text-sm">
+              Understand how much AI systems are engaging with specific topics and queries.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center mb-4">
+              <Database className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Multi-Source Data</h3>
+            <p className="text-gray-600 text-sm">
+              Comprehensive analysis combining Google Trends, social media, news APIs, and AI conversation patterns.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mb-4">
+              <Lightbulb className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Actionable Insights</h3>
+            <p className="text-gray-600 text-sm">
+              Get specific recommendations and insights to optimize your content for AI discovery.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* How It Works Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl shadow-sm p-8 mb-8"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">1</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Enter Your Topic</h3>
+              <p className="text-gray-600 text-sm">
+                Input any topic, keyword, or industry you want to analyze for AI trends and engagement.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">2</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Analysis</h3>
+              <p className="text-gray-600 text-sm">
+                Our system analyzes multiple data sources to identify trends, engagement patterns, and AI focus areas.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">3</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Get Insights</h3>
+              <p className="text-gray-600 text-sm">
+                Receive comprehensive reports with trend velocity, AI engagement scores, and actionable recommendations.
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Input Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="bg-white rounded-2xl shadow-sm p-8 mb-8"
         >
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Start Your Trend Analysis</h2>
+            <p className="text-gray-600">Discover what AI systems are focusing on and optimize your content strategy</p>
+          </div>
           <div className="max-w-4xl mx-auto space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -211,9 +332,9 @@ export default function TrendAnalyzer() {
                         ? 'bg-yellow-500'
                         : 'bg-red-500'
                     }`}></div>
-                    <span className="text-sm font-medium">Google Trends</span>
+                    <span className="text-sm font-medium text-gray-900">Google Trends</span>
                   </div>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-700 mt-1">
                     {analysis.dataStatus?.googleTrends === 'real' ? 'Real data' : 
                      analysis.dataStatus?.googleTrends === 'mock' ? 'Mock data' : 'Error'}
                   </p>
@@ -234,9 +355,9 @@ export default function TrendAnalyzer() {
                         ? 'bg-yellow-500'
                         : 'bg-red-500'
                     }`}></div>
-                    <span className="text-sm font-medium">Social Media</span>
+                    <span className="text-sm font-medium text-gray-900">Social Media</span>
                   </div>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-700 mt-1">
                     {analysis.dataStatus?.socialMedia === 'real' ? 'Real data' : 
                      analysis.dataStatus?.socialMedia === 'mock' ? 'Mock data' : 'Error'}
                   </p>
@@ -257,9 +378,9 @@ export default function TrendAnalyzer() {
                         ? 'bg-yellow-500'
                         : 'bg-red-500'
                     }`}></div>
-                    <span className="text-sm font-medium">News API</span>
+                    <span className="text-sm font-medium text-gray-900">News API</span>
                   </div>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-700 mt-1">
                     {analysis.dataStatus?.news === 'real' ? 'Real data' : 
                      analysis.dataStatus?.news === 'mock' ? 'Mock data' : 'Error'}
                   </p>
@@ -280,9 +401,9 @@ export default function TrendAnalyzer() {
                         ? 'bg-yellow-500'
                         : 'bg-red-500'
                     }`}></div>
-                    <span className="text-sm font-medium">AI Analysis</span>
+                    <span className="text-sm font-medium text-gray-900">AI Analysis</span>
                   </div>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-700 mt-1">
                     {analysis.dataStatus?.aiConversations === 'real' ? 'Real data' : 
                      analysis.dataStatus?.aiConversations === 'mock' ? 'Mock data' : 'Error'}
                   </p>
@@ -421,6 +542,143 @@ export default function TrendAnalyzer() {
                 </div>
               </div>
             </div>
+
+            {/* --- New: Google Trends Details --- */}
+            {analysis.rawData?.googleTrends && (
+              <div className="bg-white rounded-xl shadow-sm p-6 mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Google Trends Details</h3>
+                <div className="mb-2">
+                  <span className="font-medium text-gray-900">Related Topics:</span>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {(analysis.rawData.googleTrends.relatedTopics || analysis.rawData.googleTrends.data?.related_topics || []).map((topic: any, idx: number) => (
+                      <span key={idx} className="px-3 py-1 bg-blue-100 text-gray-900 rounded-full text-sm">{typeof topic === 'string' ? topic : topic.title || JSON.stringify(topic)}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium text-gray-900">Related Queries:</span>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {(analysis.rawData.googleTrends.relatedQueries || analysis.rawData.googleTrends.data?.related_queries || []).map((query: any, idx: number) => (
+                      <span key={idx} className="px-3 py-1 bg-green-100 text-gray-900 rounded-full text-sm">{query}</span>
+                    ))}
+                  </div>
+                </div>
+                {/* Time Series Table */}
+                {analysis.rawData.googleTrends.data?.time_series_data && analysis.rawData.googleTrends.data.time_series_data.length > 0 && (
+                  <div className="mt-4">
+                    <span className="font-medium text-gray-900">Time Series Data:</span>
+                    <div className="overflow-x-auto mt-2">
+                      <table className="min-w-full text-sm text-gray-900 border border-gray-200 rounded">
+                        <thead>
+                          <tr>
+                            <th className="px-2 py-1 border-b border-gray-200 text-left">Date</th>
+                            {/* If multiple queries, show each as a column */}
+                            {analysis.rawData.googleTrends.data.time_series_data[0]?.values?.map((v: any, i: number) => (
+                              <th key={i} className="px-2 py-1 border-b border-gray-200 text-left">{v.query || `Value ${i+1}`}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {analysis.rawData.googleTrends.data.time_series_data.map((row: any, idx: number) => (
+                            <tr key={idx}>
+                              <td className="px-2 py-1 border-b border-gray-100">{row.date || row.time || ''}</td>
+                              {row.values?.map((v: any, i: number) => (
+                                <td key={i} className="px-2 py-1 border-b border-gray-100">{v.extracted_value ?? v.value ?? ''}</td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* --- New: News Articles --- */}
+            {analysis.rawData?.news && analysis.rawData.news.recentArticles && analysis.rawData.news.recentArticles.length > 0 && (
+              <div className="bg-white rounded-xl shadow-sm p-6 mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Recent News Articles</h3>
+                <ul className="space-y-3">
+                  {analysis.rawData.news.recentArticles.map((article: any, idx: number) => (
+                    <li key={idx} className="border-b pb-2 last:border-b-0">
+                      <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-indigo-700 font-medium hover:underline">{article.title}</a>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {article.source?.name ? <span>{article.source.name}</span> : null}
+                        {article.publishedAt ? <span> &middot; {new Date(article.publishedAt).toLocaleDateString()}</span> : null}
+                      </div>
+                      {article.description && <div className="text-sm text-gray-700 mt-1">{article.description}</div>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* --- New: Social Media Mock Data --- */}
+            {analysis.rawData?.socialMedia && (
+              <div className="bg-white rounded-xl shadow-sm p-6 mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Social Media Overview (Mock Data)</h3>
+                <div className="mb-2">
+                  <span className="font-medium">Twitter:</span>
+                  <div className="text-sm text-gray-700 ml-2">Tweet Volume: {analysis.rawData.socialMedia.twitter?.tweetVolume}</div>
+                  <div className="flex flex-wrap gap-2 mt-1 ml-2">
+                    {(analysis.rawData.socialMedia.twitter?.trendingHashtags || []).map((tag: string, idx: number) => (
+                      <span key={idx} className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium">Reddit:</span>
+                  <div className="text-sm text-gray-700 ml-2">Post Count: {analysis.rawData.socialMedia.reddit?.postCount}</div>
+                  <div className="flex flex-wrap gap-2 mt-1 ml-2">
+                    {(analysis.rawData.socialMedia.reddit?.subreddits || []).map((sub: string, idx: number) => (
+                      <span key={idx} className="px-2 py-1 bg-orange-50 text-orange-700 rounded text-xs">{sub}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium">LinkedIn:</span>
+                  <div className="text-sm text-gray-700 ml-2">Post Engagement: {analysis.rawData.socialMedia.linkedin?.postEngagement}</div>
+                  <div className="flex flex-wrap gap-2 mt-1 ml-2">
+                    {(analysis.rawData.socialMedia.linkedin?.industryMentions || []).map((ind: string, idx: number) => (
+                      <span key={idx} className="px-2 py-1 bg-gray-50 text-gray-700 rounded text-xs">{ind}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* --- New: AI Conversation Analysis --- */}
+            {analysis.rawData?.aiConversations && (
+              <div className="bg-white rounded-xl shadow-sm p-6 mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">AI Conversation Analysis</h3>
+                <div className="mb-2">
+                  <span className="font-medium">Mention Frequency:</span> <span className="text-sm text-gray-700">{analysis.rawData.aiConversations.aiMentionFrequency}/100</span>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium">Complexity Level:</span> <span className="text-sm text-gray-700">{analysis.rawData.aiConversations.complexityLevel}</span>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium">Conversation Trend:</span> <span className="text-sm text-gray-700">{analysis.rawData.aiConversations.conversationTrend}</span>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium">Common Questions:</span>
+                  <ul className="list-disc ml-6 text-sm text-gray-700">
+                    {(analysis.rawData.aiConversations.commonQuestions || []).map((q: string, idx: number) => (
+                      <li key={idx}>{q}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mb-2">
+                  <span className="font-medium">Related Topics:</span>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {(analysis.rawData.aiConversations.relatedTopics || []).map((topic: string, idx: number) => (
+                      <span key={idx} className="px-3 py-1 bg-purple-50 text-purple-700 rounded text-xs">{topic}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Action Buttons */}
             <div className="flex justify-center space-x-4">
